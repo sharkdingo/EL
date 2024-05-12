@@ -6,4 +6,13 @@
     <string name="Sort">分类</string>
     <string name="Mine">我的</string>
     <string name="Settings">设置</string>
+    <string name="nickname">坠落在天空的星星</string>
+    <string name="setting">设置</string>
+    <string name="sound_play">声音播放</string>
+    <string name="double_click_save">双击保存</string>
+    <string name="mode_change">日/夜间模式</string>
+    <string name="account_information">账号资料</string>
+    <string name="about_us">关于我们</string>
+    <string name="clear_storage_space">清理存储空间</string>
+    <string name="log_out">退出登录</string>
 </resources>
