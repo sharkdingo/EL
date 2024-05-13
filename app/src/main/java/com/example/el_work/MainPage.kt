@@ -43,4 +43,16 @@ class MainPage : ComponentActivity() {
         val intent = Intent(this, ClassifyActivity1::class.java)
         startActivity(intent)
     }
+    fun goToActivity_main(view: View){
+        val intent = Intent(this, ClassifyActivity1::class.java)
+        startActivity(intent)
+    }
+    fun goToMainUser(view: View){
+        val intent = Intent(this, MainUserActivity::class.java)
+        startActivity(intent)
+    }
+    fun goToSetting(view: View){
+        val intent = Intent(this, SettingActivity::class.java)
+        startActivity(intent)
+    }
 }
