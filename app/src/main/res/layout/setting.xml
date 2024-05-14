@@ -248,6 +248,7 @@
             android:text=">"
             android:textSize="20sp"
             android:textColor="@color/black"
+            android:onClick="goToMainUser"
             app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
