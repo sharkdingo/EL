@@ -13,31 +13,33 @@
         android:theme="@style/Theme.ElWork"
         tools:targetApi="31">
         <activity
+            android:name=".MainUserActivity.DisplayCaseViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".MainUserActivity.DisplayCaseAdapter"
+            android:exported="false" />
+        <activity
             android:name=".MainPage"
             android:exported="true"
-            android:label="@string/app_name"
-            >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ClassifyActivity1"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ClassifyActivity2"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
-            android:name=".MainUserActivity"
-            android:exported="true">
-        </activity>
+            android:name=".MainUserActivity.MainUserActivity"
+            android:exported="true" />
         <activity
             android:name=".SettingActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
