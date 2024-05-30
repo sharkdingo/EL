@@ -13,15 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/gradient_background"
-        app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine1"
-        app:layout_constraintEnd_toEndOf="@id/setting_horizontalLine1"
+        app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine"
+        app:layout_constraintEnd_toEndOf="@id/setting_horizontalLine"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- 设置标题 -->
         <TextView
-            android:id="@+id/setting_textView1"
+            android:id="@+id/setting_topLayout_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting"
@@ -34,29 +34,27 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-
         <!-- 返回按钮 -->
-\
         <Button
-            android:id="@+id/setting_button"
-            android:layout_width="0dp"
+            android:id="@+id/setting_topLayout_button"
+            android:layout_width="100dp"
             android:layout_height="0dp"
             android:background="#00000000"
             android:text="&lt;"
-            android:textSize="25sp"
+            android:textSize="27sp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/setting_textView1"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintEnd_toStartOf="@+id/setting_topLayout_textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 分隔线1 -->
+    <!-- 上下侧分隔线 -->
 
     <View
-        android:id="@+id/setting_horizontalLine1"
+        android:id="@+id/setting_horizontalLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/black"
@@ -75,10 +73,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine1">
+        app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine">
 
         <View
-            android:id="@+id/setting_horizontalLine2"
+            android:id="@+id/setting_bottomLayout_horizontalLine1"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@android:color/darker_gray"
@@ -90,7 +88,7 @@
             app:layout_constraintVertical_bias="0.1" />
 
         <View
-            android:id="@+id/setting_horizontalLine3"
+            android:id="@+id/setting_bottomLayout_horizontalLine2"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@android:color/darker_gray"
@@ -102,7 +100,7 @@
             app:layout_constraintVertical_bias="0.2" />
 
         <View
-            android:id="@+id/setting_horizontalLine4"
+            android:id="@+id/setting_bottomLayout_horizontalLine3"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@android:color/darker_gray"
@@ -114,7 +112,7 @@
             app:layout_constraintVertical_bias="0.3" />
 
         <View
-            android:id="@+id/setting_horizontalLine5"
+            android:id="@+id/setting_bottomLayout_horizontalLine4"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@android:color/darker_gray"
@@ -126,7 +124,7 @@
             app:layout_constraintVertical_bias="0.4" />
 
         <View
-            android:id="@+id/setting_horizontalLine6"
+            android:id="@+id/setting_bottomLayout_horizontalLine5"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@android:color/darker_gray"
@@ -138,7 +136,7 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <View
-            android:id="@+id/setting_horizontalLine7"
+            android:id="@+id/setting_bottomLayout_horizontalLine6"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@android:color/darker_gray"
@@ -150,13 +148,13 @@
             app:layout_constraintVertical_bias="0.6" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/setting_bottomLayout_textview1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sound_play"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine2"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,171 +162,172 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/setting_bottomLayout_switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine2"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.94"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toEndOf="@+id/setting_bottomLayout_textview1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/setting_bottomLayout_textview2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/double_click_save"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine3"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine2"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine1"
             app:layout_constraintVertical_bias="0.5" />
 
         <Switch
-            android:id="@+id/switch3"
+            android:id="@+id/setting_bottomLayout_switch2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine3"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.94"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine2"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toEndOf="@+id/setting_bottomLayout_textview2"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine1"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/setting_bottomLayout_textview3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mode_change"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine4"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine3"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine2"
             app:layout_constraintVertical_bias="0.5" />
 
         <Switch
-            android:id="@+id/switch4"
+            android:id="@+id/setting_bottomLayout_switch3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine4"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.94"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine3"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toEndOf="@+id/setting_bottomLayout_textview3"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine2"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/setting_bottomLayout_textview4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/account_information"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine5"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine4"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine3"
             app:layout_constraintVertical_bias="0.5" />
 
-        <TextView
-            android:id="@+id/textView8"
+        <Button
+            android:id="@+id/setting_bottomLayout_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=">"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:background="#00000000"
             android:onClick="goToMainUser"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine5"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine4"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/setting_bottomLayout_textview4"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine3"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/setting_bottomLayout_textview5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_us"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine6"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine5"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine4"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/setting_bottomLayout_textview6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="version 1.0"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine6"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.937"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine5"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@+id/setting_bottomLayout_textview5"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine4"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/setting_bottomLayout_textview7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/clear_storage_space"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine7"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine6"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine5"
             app:layout_constraintVertical_bias="0.5" />
 
         <Switch
-            android:id="@+id/switch5"
+            android:id="@+id/setting_bottomLayout_switch4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
-            app:layout_constraintBottom_toTopOf="@+id/setting_horizontalLine7"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.94"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine6"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toEndOf="@+id/setting_bottomLayout_textview7"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine5"
             app:layout_constraintVertical_bias="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/setting_guideline"
+            android:id="@+id/setting_bottomLayout_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/setting_bottomLayout_textview8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/log_out"
             android:textColor="#FF0000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_guideline"
+            app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_horizontalLine7"
+            app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine6"
             app:layout_constraintVertical_bias="0.5" />
 
 
