@@ -183,5 +183,8 @@ class ClassifyActivity2 : AppCompatActivity() {
         val intent = Intent(this, ClassifyActivity2::class.java)
         startActivity(intent)
     }
-
+    fun goToActivityMain(view: View) {
+        val intent = Intent(this, MainPage::class.java)
+        startActivity(intent)
+    }
 }
