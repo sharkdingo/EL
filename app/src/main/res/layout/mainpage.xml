@@ -15,7 +15,7 @@
             android:id="@+id/backgroundImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/bg_horizontal"
+            android:src="@drawable/bg_vertical"
             android:gravity="center"
             android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
 <!--            android:onClick="StartGame"/>-->
         <include
             android:id="@+id/includeLayout"
-            layout="@layout/game_start_button_h"/>
+            layout="@layout/game_start_button_v"/>
 
         <Button
             android:layout_width="40dp"
