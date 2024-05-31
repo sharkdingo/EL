@@ -24,7 +24,6 @@ class MainPage : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainpage)
 
-        // 背景、入画自适应
         val imageView = findViewById<ImageView>(R.id.backgroundImage)
         val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val includeView = findViewById<View>(R.id.includeLayout) as ViewGroup
@@ -32,47 +31,62 @@ class MainPage : ComponentActivity() {
         drawerLayout = findViewById(R.id.MainPage)
         navigationDrawer = findViewById(R.id.NavigationDrawer)
 
-        // 设置侧边栏的宽度为屏幕的75%
-        val params = navigationDrawer.layoutParams as DrawerLayout.LayoutParams
-        params.width = (resources.displayMetrics.widthPixels * 0.75).toInt()
-        navigationDrawer.layoutParams = params
-
-        // 设置ToggleButton的点击监听器
         val toggleButton: Button = findViewById(R.id.ToggleButton)
         toggleButton.setOnClickListener {
-            // 根据抽屉的状态打开或关闭
             if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
                 drawerLayout.closeDrawer(GravityCompat.END)
             } else {
                 drawerLayout.openDrawer(GravityCompat.END)
             }
         }
+
+        setDynamicBackground(imageView)
+        setDynamicInclude(layoutInflater, includeView)
+        setDrawerWidth()
     }
+
     fun StartGame(view: View) {
         val intent = Intent(this, ClassifyActivity1::class.java)
         startActivity(intent)
     }
+
     fun goToActivity_main(view: View){
         val intent = Intent(this, ClassifyActivity1::class.java)
         startActivity(intent)
     }
+
     fun goToMainUser(view: View){
         val intent = Intent(this, MainUserActivity::class.java)
         startActivity(intent)
     }
+
     fun goToSetting(view: View){
         val intent = Intent(this, SettingActivity::class.java)
         startActivity(intent)
     }
 
-    // 背景自适应
+    private fun setDrawerWidth() {
+        val params = navigationDrawer.layoutParams as DrawerLayout.LayoutParams
+        params.width = (resources.displayMetrics.widthPixels * 0.75).toInt()
+        navigationDrawer.layoutParams = params
+    }
+
+    private fun setDynamicInclude(layoutInflater: LayoutInflater, includeView: ViewGroup) {
+        includeView.removeAllViews()
+        val layoutId = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            R.layout.game_start_button_h
+        } else {
+            R.layout.game_start_button_v
+        }
+        layoutInflater.inflate(layoutId, includeView)
+    }
+
     private fun setDynamicBackground(imageView: ImageView) {
         val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            imageView.setImageResource(R.drawable.bg_horizontal)  // 横屏背景图
-
+            imageView.setImageResource(R.drawable.bg_horizontal)
         } else {
-            imageView.setImageResource(R.drawable.bg_vertical)  // 竖屏背景图
+            imageView.setImageResource(R.drawable.bg_vertical)
         }
     }
 
@@ -81,32 +95,8 @@ class MainPage : ComponentActivity() {
         val imageView = findViewById<ImageView>(R.id.backgroundImage)
         setDynamicBackground(imageView)
         val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val includeView = findViewById<ViewGroup>(R.id.includeLayout) // 假设你的 include 的根布局是 ViewGroup 类型
+        val includeView = findViewById<ViewGroup>(R.id.includeLayout)
         setDynamicInclude(layoutInflater, includeView)
+        setDrawerWidth()
     }
-
-    private fun setDynamicInclude(layoutInflater: LayoutInflater, includeView: ViewGroup) {
-        val orientation = resources.configuration.orientation
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            includeView.removeAllViews()
-            layoutInflater.inflate(R.layout.game_start_button_h, includeView)
-            drawerLayout = findViewById(R.id.MainPage)
-            navigationDrawer = findViewById(R.id.NavigationDrawer)
-            // 设置侧边栏的宽度为屏幕的75%
-            val params = navigationDrawer.layoutParams as DrawerLayout.LayoutParams
-            params.width = (resources.displayMetrics.widthPixels * 0.75).toInt()
-            navigationDrawer.layoutParams = params
-        } else {
-            includeView.removeAllViews()
-            layoutInflater.inflate(R.layout.game_start_button_v, includeView)
-            drawerLayout = findViewById(R.id.MainPage)
-            navigationDrawer = findViewById(R.id.NavigationDrawer)
-
-            // 设置侧边栏的宽度为屏幕的75%
-            val params = navigationDrawer.layoutParams as DrawerLayout.LayoutParams
-            params.width = (resources.displayMetrics.widthPixels * 0.75).toInt()
-            navigationDrawer.layoutParams = params
-        }
-    }
-
 }
