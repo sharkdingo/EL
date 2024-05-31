@@ -6,9 +6,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.el_work.DataBase.DatabaseHelper
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -23,8 +21,6 @@ import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.PorterDuff
-import android.graphics.drawable.ColorDrawable
 import android.view.MotionEvent
 import android.view.View
 class ClassifyActivity2 : AppCompatActivity() {
@@ -52,16 +48,16 @@ class ClassifyActivity2 : AppCompatActivity() {
         }
 
         dbHelper = DatabaseHelper(this)
-        val saveButton: Button = findViewById(R.id.button9)
+        val saveButton: Button = findViewById(R.id.button_save)
         saveButton.setOnClickListener{
             saveBitmap()
         }
 
-        val button1 = findViewById<Button>(R.id.button6)
-        val button2 = findViewById<Button>(R.id.button7)
-        val button3 = findViewById<Button>(R.id.button8)
-        val button4 = findViewById<Button>(R.id.button10)
-        val button5 = findViewById<Button>(R.id.button)
+        val button1 = findViewById<Button>(R.id.button_red)
+        val button2 = findViewById<Button>(R.id.button_green)
+        val button3 = findViewById<Button>(R.id.button_blue)
+        val button4 = findViewById<Button>(R.id.button_yellow)
+        val button5 = findViewById<Button>(R.id.button_black)
         var initialButtonColor = button4.backgroundTintList?.defaultColor ?: Color.BLACK
 
         imageView = findViewById(R.id.imageView5)
