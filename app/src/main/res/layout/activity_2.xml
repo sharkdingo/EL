@@ -89,7 +89,7 @@
                 android:text="清除"
                 android:textSize="25sp"
                 android:fontFamily="@font/font"
-                android:onClick="goToActivity2"
+                android:onClick="toggleEraser"
                 app:layout_constraintStart_toStartOf="@id/button_return"
                 app:layout_constraintTop_toBottomOf="@+id/button_return"
                 app:layout_constraintBottom_toTopOf="@+id/button_save"/>
@@ -165,8 +165,9 @@
                 android:id="@+id/button_purple"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/button_red"
+                android:backgroundTint="#673AB7"
                 app:layout_constraintEnd_toStartOf="@id/button_green"
+                app:layout_constraintStart_toEndOf="@id/button_red"
                 app:layout_constraintTop_toTopOf="@id/button_red" />
 
             <Button
@@ -221,72 +222,86 @@
                 android:id="@+id/button_1"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="#FFC107"
                 app:layout_constraintBottom_toBottomOf="@+id/button_red"
-                app:layout_constraintEnd_toStartOf="@+id/button_3"
+                app:layout_constraintEnd_toStartOf="@+id/button_narrow"
                 app:layout_constraintStart_toEndOf="@id/button_2"
-                app:layout_constraintTop_toTopOf="@+id/button_red"/>
+                app:layout_constraintTop_toTopOf="@+id/button_red" />
 
             <Button
                 android:id="@+id/button_2"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/button_blue"
+                android:backgroundTint="#3F51B5"
                 app:layout_constraintEnd_toStartOf="@id/button_1"
+                app:layout_constraintStart_toEndOf="@id/button_blue"
                 app:layout_constraintTop_toTopOf="@id/button_red" />
 
             <Button
-                android:id="@+id/button_3"
+                android:id="@+id/button_narrow"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#2196F3"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@id/button_red"
-                app:layout_constraintTop_toTopOf="@id/button_red"
+                app:layout_constraintEnd_toEndOf="@id/button_light"
                 app:layout_constraintStart_toEndOf="@id/button_1"
-                app:layout_constraintEnd_toEndOf="@id/button_8" />
+                app:layout_constraintTop_toTopOf="@id/button_red" />
 
             <Button
                 android:id="@+id/button_4"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="#6E3C2E"
                 app:layout_constraintBottom_toBottomOf="@+id/button_black"
-                app:layout_constraintEnd_toStartOf="@+id/button_6"
+                app:layout_constraintEnd_toStartOf="@+id/button_wider"
                 app:layout_constraintStart_toEndOf="@id/button_5"
-                app:layout_constraintTop_toTopOf="@+id/button_black"/>
+                app:layout_constraintTop_toTopOf="@+id/button_black" />
 
             <Button
                 android:id="@+id/button_5"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/button_pink"
+                android:backgroundTint="#87BFBA"
                 app:layout_constraintEnd_toStartOf="@id/button_4"
+                app:layout_constraintStart_toEndOf="@id/button_pink"
                 app:layout_constraintTop_toTopOf="@id/button_black" />
 
             <Button
-                android:id="@+id/button_6"
+                android:id="@+id/button_wider"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#2196F3"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@id/button_black"
-                app:layout_constraintTop_toTopOf="@id/button_black"
+                app:layout_constraintEnd_toEndOf="@id/button_deep"
                 app:layout_constraintStart_toEndOf="@id/button_4"
-                app:layout_constraintEnd_toEndOf="@id/button_7" />
+                app:layout_constraintTop_toTopOf="@id/button_black" />
 
             <Button
-                android:id="@+id/button_7"
+                android:id="@+id/button_deep"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:text="D"
+                android:textColor="@color/black"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@id/button_black"
-                app:layout_constraintStart_toEndOf="@id/button_6"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/button_wider" />
 
             <Button
-                android:id="@+id/button_8"
+                android:id="@+id/button_light"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:text="L"
+                android:textColor="@color/black"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@id/button_red"
-                app:layout_constraintStart_toEndOf="@id/button_3"
+                app:layout_constraintStart_toEndOf="@id/button_narrow"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

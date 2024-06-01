@@ -21,6 +21,8 @@ import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
 import android.view.MotionEvent
 import android.view.View
 class ClassifyActivity2 : AppCompatActivity() {
@@ -34,7 +36,7 @@ class ClassifyActivity2 : AppCompatActivity() {
 
     private var startX = 0f
     private var startY = 0f
-
+    var isErasing = false
 
     @SuppressLint("ClickableViewAccessibility", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +60,17 @@ class ClassifyActivity2 : AppCompatActivity() {
         val button3 = findViewById<Button>(R.id.button_blue)
         val button4 = findViewById<Button>(R.id.button_yellow)
         val button5 = findViewById<Button>(R.id.button_black)
+        val button6 = findViewById<Button>(R.id.button_5)
+        val button7 = findViewById<Button>(R.id.button_2)
+        val button8 = findViewById<Button>(R.id.button_4)
+        val button9 = findViewById<Button>(R.id.button_1)
+        val button10 = findViewById<Button>(R.id.button_purple)
+        val button11 = findViewById<Button>(R.id.button_pink)
+        val button12 = findViewById<Button>(R.id.button_orange)
+        val buttonwider = findViewById<Button>(R.id.button_wider)
+        val buttonnarrow= findViewById<Button>(R.id.button_narrow)
+        val buttondeep= findViewById<Button>(R.id.button_deep)
+        val buttonlight = findViewById<Button>(R.id.button_light)
         var initialButtonColor = button4.backgroundTintList?.defaultColor ?: Color.BLACK
 
         imageView = findViewById(R.id.imageView5)
@@ -77,60 +90,119 @@ class ClassifyActivity2 : AppCompatActivity() {
                     startY = scaledY
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    canvas.drawLine(startX, startY, scaledX, scaledY, paint)
-                    imageView.invalidate()
-                    startX = scaledX
-                    startY = scaledY
+                    if (isErasing) {
+                        val clearPaint = Paint().apply {
+                            xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+                            isAntiAlias = true
+                        }
+                        canvas.drawCircle(scaledX, scaledY, 25f, clearPaint)
+                        imageView.invalidate()
+                    } else {
+                        canvas.drawLine(startX, startY, scaledX, scaledY, paint)
+                        startX = scaledX
+                        startY = scaledY
+                        imageView.invalidate()
+                    }
                 }
             }
             true
         }
         paint = Paint().apply {
             color = initialButtonColor
-            strokeWidth = 45f
+            strokeWidth = 50f
             style = Paint.Style.STROKE
+            alpha=128
         }
 
         button1.setOnClickListener {
-            val defaultColor = Color.parseColor("#FFFFFFFF")
-            val currentColor = button1.backgroundTintList?.getColorForState(button1.drawableState, defaultColor)
-            if (currentColor != null) {
-                colors.add(currentColor)
-            }
-            paint.color=Color.rgb(255,0,0)
+
+            paint.color=Color.rgb(233,30,99)
             button1.invalidate()
 
         }
 
         button2.setOnClickListener {
-            val defaultColor = Color.parseColor("#FFFFFFFF")
-            val currentColor = button2.backgroundTintList?.getColorForState(button2.drawableState, defaultColor)
-            if (currentColor != null) {
-                colors.add(currentColor)
-            }
-            paint.color=Color.rgb(0,255,0)
+
+            paint.color=Color.rgb(76,175,80)
             button2.invalidate()
         }
 
         button3.setOnClickListener {
-            val defaultColor = Color.parseColor("#FFFFFFFF")
-            val currentColor = button3.backgroundTintList?.getColorForState(button3.drawableState, defaultColor)
-            if (currentColor != null) {
-                colors.add(currentColor)
-            }
 
-            paint.color=Color.rgb(0,0,255)
+            paint.color=Color.rgb(33,150,243)
             button3.invalidate()
         }
-        button5.setOnClickListener {
-            val defaultColor = Color.parseColor("#FFFFFFFF")
-            val currentColor = button3.backgroundTintList?.getColorForState(button3.drawableState, defaultColor)
-            if (currentColor != null) {
-                colors.add(currentColor)
-            }
+        button4.setOnClickListener {
 
-            paint.color=Color.rgb(85,85,85)
+            paint.color=Color.rgb(255,255,15)
+            button4.invalidate()
+        }
+        button5.setOnClickListener {
+
+            paint.color=Color.rgb(0,0,0)
             button5.invalidate()
+        }
+        button6.setOnClickListener {
+
+            paint.color=Color.rgb(135,191,186)
+            button6.invalidate()
+        }
+        button7.setOnClickListener {
+
+
+            paint.color=Color.rgb(63,81,181)
+            button7.invalidate()
+        }
+        button8.setOnClickListener {
+
+
+            paint.color=Color.rgb(110,60,46)
+            button8.invalidate()
+        }
+        button9.setOnClickListener {
+
+
+            paint.color=Color.rgb(255,193,7)
+            button9.invalidate()
+        }
+        button10.setOnClickListener {
+
+            paint.color=Color.rgb(103,58,183)
+            button10.invalidate()
+        }
+        button11.setOnClickListener {
+
+            paint.color=Color.rgb(231,186,228)
+            button11.invalidate()
+        }
+        button12.setOnClickListener {
+
+            paint.color=Color.rgb(255,187,51)
+            button12.invalidate()
+        }
+        buttonwider.setOnClickListener {
+
+            paint.strokeWidth += 10f
+            buttonwider.invalidate()
+        }
+        buttonnarrow.setOnClickListener {
+            if (paint.strokeWidth>15f){
+                paint.strokeWidth -= 10f
+            }
+            buttonnarrow.invalidate()
+        }
+        buttondeep.setOnClickListener {
+            if(paint.alpha<235){
+                paint.alpha+=20
+            }
+            buttondeep.invalidate()
+        }
+        buttonlight.setOnClickListener {
+
+            if(paint.alpha>38){
+                paint.alpha-=20
+            }
+            buttonlight.invalidate()
         }
     }
 
@@ -182,5 +254,13 @@ class ClassifyActivity2 : AppCompatActivity() {
     fun goToActivityMain(view: View) {
         val intent = Intent(this, MainPage::class.java)
         startActivity(intent)
+    }
+    fun toggleEraser(view: View) {
+        isErasing = !isErasing
+        if (isErasing) {
+            view.setBackgroundColor(Color.GRAY)
+        } else {
+            view.setBackgroundColor(Color.LTGRAY)
+        }
     }
 }
