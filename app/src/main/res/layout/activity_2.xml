@@ -238,19 +238,6 @@
                 app:layout_constraintTop_toTopOf="@id/button_red" />
 
             <Button
-                android:id="@+id/button_narrow"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#2196F3"
-                android:text="-"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@id/button_red"
-                app:layout_constraintEnd_toEndOf="@id/button_light"
-                app:layout_constraintStart_toEndOf="@id/button_1"
-                app:layout_constraintTop_toTopOf="@id/button_red" />
-
-            <Button
                 android:id="@+id/button_4"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -272,34 +259,63 @@
             <Button
                 android:id="@+id/button_wider"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#2196F3"
-                android:text="+"
+                android:layout_height="50dp"
+                android:background="@drawable/triangle_up"
                 android:textColor="@color/black"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@id/button_black"
                 app:layout_constraintEnd_toEndOf="@id/button_deep"
                 app:layout_constraintStart_toEndOf="@id/button_4"
                 app:layout_constraintTop_toTopOf="@id/button_black" />
 
+            <TextView
+                android:id="@+id/width"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="画笔宽度"
+                android:fontFamily="@font/font"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/button_wider"
+                app:layout_constraintBottom_toTopOf="@id/button_narrow"
+                app:layout_constraintStart_toStartOf="@id/button_wider"
+                app:layout_constraintEnd_toEndOf="@id/button_wider"/>
+
+            <Button
+                android:id="@+id/button_narrow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/triangle_down"
+                app:layout_constraintBottom_toBottomOf="@id/button_red"
+                app:layout_constraintEnd_toEndOf="@id/button_light"
+                app:layout_constraintStart_toEndOf="@id/button_1"
+                app:layout_constraintTop_toTopOf="@id/button_red" />
+
             <Button
                 android:id="@+id/button_deep"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:text="D"
+                android:layout_height="50dp"
+                android:background="@drawable/triangle_up"
                 android:textColor="@color/black"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@id/button_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/button_wider" />
 
+            <TextView
+                android:id="@+id/depth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="颜色深度"
+                android:fontFamily="@font/font"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/button_deep"
+                app:layout_constraintBottom_toTopOf="@id/button_light"
+                app:layout_constraintStart_toStartOf="@id/button_deep"
+                app:layout_constraintEnd_toEndOf="@id/button_light"/>
+
             <Button
                 android:id="@+id/button_light"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:text="L"
-                android:textColor="@color/black"
-                android:textSize="24sp"
+                android:layout_height="50dp"
+                android:background="@drawable/triangle_down"
                 app:layout_constraintBottom_toBottomOf="@id/button_red"
                 app:layout_constraintStart_toEndOf="@id/button_narrow"
                 app:layout_constraintEnd_toEndOf="parent"/>
