@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity2"
+    android:id="@+id/freeCreation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#633030" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/upperLayout"
+        android:id="@+id/upperLayout_free"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
+            android:id="@+id/constraintLayout4_free"
             android:layout_width="match_parent"
             android:layout_height="178dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,17 +31,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView_small"
+                android:id="@+id/imageView_small_free"
                 android:layout_width="162dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/board3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/huaniao" />
+                app:srcCompat="@drawable/pencil" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/name_free"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -51,31 +51,24 @@
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageView_small"
+                app:layout_constraintStart_toEndOf="@id/imageView_small_free"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <!--            <Button-->
-<!--                android:id="@+id/customButton1"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="三山奇闻"-->
-<!--                style="@style/ButtonStyle"/>-->
-
             <TextView
-                android:id="@+id/intro"
+                android:id="@+id/intro_free"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="简介：*******"
                 android:fontFamily="@font/font"
                 android:textSize="25sp"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintTop_toBottomOf="@id/name"
-                app:layout_constraintStart_toStartOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@id/name_free"
+                app:layout_constraintStart_toStartOf="@id/name_free"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/button_return" />
+                app:layout_constraintEnd_toStartOf="@id/button_return_free" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_return"
+                android:id="@+id/button_return_free"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="出画"
@@ -85,7 +78,7 @@
                 android:onClick="goToActivityMain"
                 app:layout_constraintVertical_bias="0.05"
                 app:layout_constraintHorizontal_bias="0.95"
-                app:layout_constraintStart_toEndOf="@id/imageView_small"
+                app:layout_constraintStart_toEndOf="@id/imageView_small_free"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +86,7 @@
                 app:layout_constraintHeight_percent="0.3"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_clean"
+                android:id="@+id/button_clean_free"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="橡皮"
@@ -101,26 +94,25 @@
                 android:textSize="25sp"
                 android:fontFamily="@font/font"
                 android:onClick="toggleEraser"
-                app:layout_constraintStart_toStartOf="@id/button_return"
-                app:layout_constraintTop_toBottomOf="@+id/button_return"
-                app:layout_constraintBottom_toTopOf="@+id/button_save"
+                app:layout_constraintStart_toStartOf="@id/button_return_free"
+                app:layout_constraintTop_toBottomOf="@+id/button_return_free"
+                app:layout_constraintBottom_toTopOf="@+id/button_save_free"
                 app:layout_constraintWidth_percent="0.1"
                 app:layout_constraintHeight_percent="0.3"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_save"
+                android:id="@+id/button_save_free"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:fontFamily="@font/font"
                 android:textSize="25sp"
                 android:text="保存"
                 android:background="@drawable/button_bg"
-                app:layout_constraintTop_toBottomOf="@id/button_clean"
+                app:layout_constraintTop_toBottomOf="@id/button_clean_free"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/button_return"
+                app:layout_constraintStart_toStartOf="@id/button_return_free"
                 app:layout_constraintWidth_percent="0.1"
                 app:layout_constraintHeight_percent="0.3" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -130,27 +122,26 @@
             android:background="@drawable/board2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-            app:layout_constraintBottom_toTopOf="@+id/colorsMap">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4_free"
+            app:layout_constraintBottom_toTopOf="@+id/colorsMap_free">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageView5_free"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintWidth_percent="0.72"
-                app:layout_constraintHeight_percent="0.9"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/shanshui1" />
-
-
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.487"
+                app:layout_constraintWidth_percent="0.72"
+                app:srcCompat="@drawable/whitecanvas" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/colorsMap"
+            android:id="@+id/colorsMap_free"
             android:layout_width="match_parent"
             android:layout_height="193dp"
             android:layout_marginBottom="1dp"

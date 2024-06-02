@@ -1,0 +1,44 @@
+<!--&lt;!&ndash; res/drawable/button_background.xml &ndash;&gt;-->
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    &lt;!&ndash; 顶部山的图片 &ndash;&gt;-->
+<!--    <item-->
+<!--        android:gravity="top|center_horizontal"-->
+<!--        android:left="0dp"-->
+<!--        android:right="20dp"-->
+<!--        android:top="10dp">-->
+<!--        <bitmap-->
+<!--            android:src="@drawable/mountain1"-->
+<!--            android:width="20dp"-->
+<!--            android:height="20dp"/> &lt;!&ndash; 手动调整高度 &ndash;&gt;-->
+<!--    </item>-->
+<!--    &lt;!&ndash; 背景颜色或形状 &ndash;&gt;-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="@color/transparent"/> &lt;!&ndash; 背景颜色 &ndash;&gt;-->
+<!--            <stroke android:width="10dp" android:color="#8B5A2B"/> &lt;!&ndash; 棕色边框 &ndash;&gt;-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
+<!-- res/drawable/button_background.xml -->
+<!-- res/drawable/button_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 背景颜色或形状 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/> <!-- 透明背景 -->
+            <stroke android:width="10dp" android:color="#8B5A2B"/> <!-- 棕色边框 -->
+        </shape>
+    </item>
+
+    <!-- 顶部山的图片 -->
+    <item
+        android:left="0dp"
+        android:top="0dp">
+        <bitmap
+            android:src="@drawable/mountain1"
+            android:gravity="left|top"/>
+    </item>
+
+</layer-list>
+

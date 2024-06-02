@@ -25,7 +25,7 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.view.MotionEvent
 import android.view.View
-class ClassifyActivity2 : AppCompatActivity() {
+class FreeCreation : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     private val colors = mutableListOf<Int>()
     private lateinit var imageView: ImageView
@@ -42,15 +42,15 @@ class ClassifyActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_2)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity2)) { v, insets ->
+        setContentView(R.layout.free_creation)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.freeCreation)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
         dbHelper = DatabaseHelper(this)
-        val saveButton: Button = findViewById(R.id.button_save)
+        val saveButton: Button = findViewById(R.id.button_save_free)
         saveButton.setOnClickListener{
             saveBitmap()
         }
@@ -73,8 +73,8 @@ class ClassifyActivity2 : AppCompatActivity() {
         val buttonlight = findViewById<Button>(R.id.button_light)
         var initialButtonColor = button4.backgroundTintList?.defaultColor ?: Color.BLACK
 
-        imageView = findViewById(R.id.imageView5)
-        val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.shanshui1)
+        imageView = findViewById(R.id.imageView5_free)
+        val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.whitecanvas)
         bitmap = Bitmap.createBitmap(originalBitmap.width, originalBitmap.height, Bitmap.Config.ARGB_8888)
         canvas = Canvas(bitmap)
         canvas.drawBitmap(originalBitmap, 0f, 0f, null)
@@ -109,8 +109,8 @@ class ClassifyActivity2 : AppCompatActivity() {
         }
         paint = Paint().apply {
             color = initialButtonColor
-            strokeWidth = 25f
-            style = Paint.Style.STROKE
+            strokeWidth = 5f
+            style = Paint.Style.FILL
             alpha=128
         }
 
@@ -186,7 +186,7 @@ class ClassifyActivity2 : AppCompatActivity() {
             buttonwider.invalidate()
         }
         buttonnarrow.setOnClickListener {
-            if (paint.strokeWidth>15f){
+            if (paint.strokeWidth>10f){
                 paint.strokeWidth -= 5f
             }
             buttonnarrow.invalidate()
@@ -207,7 +207,7 @@ class ClassifyActivity2 : AppCompatActivity() {
     }
 
     private fun saveBitmap() {
-        val imageView: ImageView = findViewById(R.id.imageView5)
+        val imageView: ImageView = findViewById(R.id.imageView5_free)
         val context: Context = imageView.context
         bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.qiwu)
         val savedImagePath = saveBitmapToStorage(bitmap)
@@ -262,5 +262,10 @@ class ClassifyActivity2 : AppCompatActivity() {
         } else {
             view.setBackgroundColor(Color.LTGRAY)
         }
+    }
+
+    fun goToFreeCreation(view: View) {
+        val intent = Intent(this,FreeCreation::class.java)
+        startActivity(intent)
     }
 }
