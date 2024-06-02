@@ -25,6 +25,14 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.internal.ViewUtils.hideKeyboard
+import kotlin.random.Random
+
 class FreeCreation : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     private val colors = mutableListOf<Int>()
@@ -72,6 +80,23 @@ class FreeCreation : AppCompatActivity() {
         val buttondeep= findViewById<Button>(R.id.button_deep)
         val buttonlight = findViewById<Button>(R.id.button_light)
         var initialButtonColor = button4.backgroundTintList?.defaultColor ?: Color.BLACK
+        val intro : TextView = findViewById<TextView>(R.id.intro_free);
+        val sentences = arrayOf(
+            "中国国画源远流长，是中国传统绘画艺术的重要组成部分。",
+            "国画注重意境抒发，强调笔墨之间的意象和意蕴。",
+            "中国国画所采用的工具主要有毛笔、宣纸、墨等。",
+            "国画以水墨为主要表现形式，追求以简约的笔墨勾勒出深刻的表现力。",
+            "中国国画的传统题材包括山水、花鸟、人物等，寄予了丰富的象征意义。",
+            "国画强调“以形写神”，通过意境、情感、审美观念等表现画家的个性和艺术追求。",
+            "传统国画注重写意和写生相结合，力求在写生的基础上表现出画家的审美情感。",
+            "国画作品中常见的表现手法包括写意、工笔、精品等，展现了绘画技法的多样性。",
+            "中国国画艺术在不同历史时期有着不同的发展轨迹，反映了社会文化的变迁和艺术风格的演变。",
+            "学习国画需要不断练习，领悟其中的精髓，培养对传统文化和艺术的热爱。"
+
+            // 更多句子...
+        )
+        val randomIndex = Random.nextInt(sentences.size)
+        intro.text = sentences[randomIndex]
 
         imageView = findViewById(R.id.imageView5_free)
         val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.whitecanvas)
@@ -95,7 +120,7 @@ class FreeCreation : AppCompatActivity() {
                             xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
                             isAntiAlias = true
                         }
-                        canvas.drawCircle(scaledX, scaledY, 25f, clearPaint)
+                        canvas.drawCircle(scaledX, scaledY, 40f, clearPaint)
                         imageView.invalidate()
                     } else {
                         canvas.drawLine(startX, startY, scaledX, scaledY, paint)
@@ -109,7 +134,7 @@ class FreeCreation : AppCompatActivity() {
         }
         paint = Paint().apply {
             color = initialButtonColor
-            strokeWidth = 5f
+            strokeWidth = 15f
             style = Paint.Style.FILL
             alpha=128
         }
@@ -181,8 +206,9 @@ class FreeCreation : AppCompatActivity() {
             button12.invalidate()
         }
         buttonwider.setOnClickListener {
-
-            paint.strokeWidth += 5f
+            if(paint.strokeWidth<30f){
+                paint.strokeWidth += 5f
+            }
             buttonwider.invalidate()
         }
         buttonnarrow.setOnClickListener {
@@ -204,6 +230,35 @@ class FreeCreation : AppCompatActivity() {
             }
             buttonlight.invalidate()
         }
+
+        val editText = findViewById<EditText>(R.id.name_free)
+        val rootView = findViewById<ConstraintLayout>(R.id.freeCreation)
+
+        // 设置 EditText 的回车键监听器
+        editText.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard(editText)
+                editText.clearFocus()
+                true
+            } else {
+                false
+            }
+        }
+
+        // 设置根视图的触摸监听器
+        rootView.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                hideKeyboard(editText)
+                editText.clearFocus()
+            }
+            false
+        }
+    }
+
+    // 隐藏键盘的函数
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun saveBitmap() {
@@ -260,7 +315,7 @@ class FreeCreation : AppCompatActivity() {
         if (isErasing) {
             view.setBackgroundColor(Color.GRAY)
         } else {
-            view.setBackgroundColor(Color.LTGRAY)
+            view.setBackgroundResource(R.drawable.button_bg)
         }
     }
 

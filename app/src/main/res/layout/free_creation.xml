@@ -40,13 +40,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/pencil" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name_free"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:hint="请在这里输入画作名字"
                 android:textSize="30sp"
                 android:fontFamily="@font/font"
+                android:imeOptions="actionDone"
                 app:layout_constraintVertical_bias="0.1"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintTop_toTopOf="parent"
@@ -54,18 +55,22 @@
                 app:layout_constraintStart_toEndOf="@id/imageView_small_free"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+
             <TextView
                 android:id="@+id/intro_free"
-                android:layout_width="wrap_content"
+                android:layout_width="700dp"
                 android:layout_height="wrap_content"
-                android:text="简介：*******"
+                android:ellipsize="none"
                 android:fontFamily="@font/font"
+                android:singleLine="false"
+                android:text="简介：*******"
                 android:textSize="25sp"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintTop_toBottomOf="@id/name_free"
-                app:layout_constraintStart_toStartOf="@id/name_free"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/button_return_free" />
+                app:layout_constraintEnd_toStartOf="@id/button_return_free"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/name_free"
+                app:layout_constraintTop_toBottomOf="@id/name_free"
+                app:layout_constraintVertical_bias="0.587" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_return_free"

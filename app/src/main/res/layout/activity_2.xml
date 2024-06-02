@@ -38,15 +38,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/huaniao" />
+                app:srcCompat="@drawable/shanshui" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:hint="请在这里输入画作名字"
                 android:textSize="30sp"
                 android:fontFamily="@font/font"
+                android:imeOptions="actionDone"
                 app:layout_constraintVertical_bias="0.1"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintTop_toTopOf="parent"
