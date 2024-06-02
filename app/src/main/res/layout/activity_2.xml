@@ -38,15 +38,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/huaniao" />
+                app:srcCompat="@drawable/shanshui" />
 
-            <TextView
+            <EditText
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:hint="请在这里输入画作名字"
                 android:textSize="30sp"
                 android:fontFamily="@font/font"
+                android:imeOptions="actionDone"
                 app:layout_constraintVertical_bias="0.1"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintTop_toTopOf="parent"
@@ -54,24 +55,35 @@
                 app:layout_constraintStart_toEndOf="@id/imageView_small"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+            <!--            <Button-->
+<!--                android:id="@+id/customButton1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="三山奇闻"-->
+<!--                style="@style/ButtonStyle"/>-->
+
             <TextView
                 android:id="@+id/intro"
-                android:layout_width="wrap_content"
+                android:layout_width="700dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="none"
                 android:text="简介：*******"
                 android:fontFamily="@font/font"
+                android:singleLine="false"
                 android:textSize="25sp"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintTop_toBottomOf="@id/name"
                 app:layout_constraintStart_toStartOf="@id/name"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/button_return" />
+                app:layout_constraintEnd_toStartOf="@id/button_return"
+                app:layout_constraintVertical_bias="0.587"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_return"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="返回"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="出画"
+                android:background="@drawable/button_bg"
                 android:textSize="25sp"
                 android:fontFamily="@font/font"
                 android:onClick="goToActivityMain"
@@ -80,30 +92,38 @@
                 app:layout_constraintStart_toEndOf="@id/imageView_small"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.1"
+                app:layout_constraintHeight_percent="0.3"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_clean"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="清除"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="橡皮"
+                android:background="@drawable/button_bg"
                 android:textSize="25sp"
                 android:fontFamily="@font/font"
                 android:onClick="toggleEraser"
                 app:layout_constraintStart_toStartOf="@id/button_return"
                 app:layout_constraintTop_toBottomOf="@+id/button_return"
-                app:layout_constraintBottom_toTopOf="@+id/button_save"/>
+                app:layout_constraintBottom_toTopOf="@+id/button_save"
+                app:layout_constraintWidth_percent="0.1"
+                app:layout_constraintHeight_percent="0.3"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:fontFamily="@font/font"
                 android:textSize="25sp"
                 android:text="保存"
+                android:background="@drawable/button_bg"
                 app:layout_constraintTop_toBottomOf="@id/button_clean"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/button_return" />
+                app:layout_constraintStart_toStartOf="@id/button_return"
+                app:layout_constraintWidth_percent="0.1"
+                app:layout_constraintHeight_percent="0.3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -128,7 +148,9 @@
                 app:layout_constraintWidth_percent="0.72"
                 app:layout_constraintHeight_percent="0.9"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/qiwu" />
+                app:srcCompat="@drawable/shanshui1" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

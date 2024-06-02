@@ -23,4 +23,9 @@ class ClassifyActivity1 : AppCompatActivity() {
         val intent = Intent(this, ClassifyActivity2::class.java)
         startActivity(intent)
     }
+
+    fun goToFreeCreation(view: View) {
+        val intent = Intent(this,FreeCreation::class.java)
+        startActivity(intent)
+    }
 }
