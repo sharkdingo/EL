@@ -2,12 +2,14 @@ package com.example.el_work
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.ComponentActivity
 import android.content.res.Configuration
+import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +21,7 @@ import com.example.el_work.MainUserActivity.MainUserActivity
 class MainPage : ComponentActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationDrawer: ConstraintLayout
+    private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,22 @@ class MainPage : ComponentActivity() {
         val imageView = findViewById<ImageView>(R.id.backgroundImage)
         val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val includeView = findViewById<View>(R.id.includeLayout) as ViewGroup
+//        val mediaPlayer:MediaPlayer=MediaPlayer.create(this,R.raw.bgm)
+//        mediaPlayer.isLooping=true
+//        mediaPlayer.start()
+
+        preferences = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val isMusicEnabled = preferences.getBoolean("music_enabled", true)
+
+        val musicServiceIntent = Intent(this, MusicService::class.java)
+        musicServiceIntent.putExtra("play_music", isMusicEnabled)
+        startService(musicServiceIntent)
+
+        val settingsButton = findViewById<Button>(R.id.settingsButton)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
+        }
 
         drawerLayout = findViewById(R.id.MainPage)
         navigationDrawer = findViewById(R.id.NavigationDrawer)
@@ -43,6 +62,7 @@ class MainPage : ComponentActivity() {
         setDynamicBackground(imageView)
         setDynamicInclude(layoutInflater, includeView)
         setDrawerWidth()
+
     }
 
     fun StartGame(view: View) {
