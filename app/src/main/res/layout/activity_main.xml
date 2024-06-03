@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#633030"
-    tools:context=".ClassifyActivity1" >
+    tools:context=".ChoosePlayModel" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -62,7 +62,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/button_bg"
                 android:fontFamily="@font/font"
-                android:onClick="goToActivity2"
+                android:onClick="goToActivityHuaNiao"
                 android:text="花鸟"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -134,7 +134,7 @@
                 android:layout_height="52dp"
                 android:background="@drawable/button_bg"
                 android:fontFamily="@font/font"
-                android:onClick="goToActivity2"
+                android:onClick="goToActivityQiWu"
                 android:text="器物"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

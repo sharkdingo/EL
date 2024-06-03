@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ElWork"
         tools:targetApi="31">
+        <activity
+            android:name=".QiWuModel"
+            android:exported="false"
+            android:theme="@style/Theme.ElWork" />
+        <activity
+            android:name=".HuaNiaoModel"
+            android:exported="false"
+            android:theme="@style/Theme.ElWork" />
+
         <service
             android:name=".MusicService"
             android:enabled="true"
@@ -50,10 +59,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ClassifyActivity1"
+            android:name=".ChoosePlayModel"
             android:exported="true" />
         <activity
-            android:name=".ClassifyActivity2"
+            android:name=".ShanShuiModel"
             android:exported="true" />
         <activity
             android:name=".MainUserActivity.MainUserActivity"

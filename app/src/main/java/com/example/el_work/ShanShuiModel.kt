@@ -1,8 +1,6 @@
 package com.example.el_work
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -20,26 +18,22 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.el_work.DataBase.DatabaseHelper
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import com.example.el_work.dataBase.ImageRepository
 import kotlin.random.Random
 
-class ClassifyActivity2 : AppCompatActivity() {
+class ShanShuiModel : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     private val colors = mutableListOf<Int>()
     private lateinit var imageView: ImageView
     private lateinit var canvas: Canvas
     private lateinit var paint:Paint
     private lateinit var bitmap: Bitmap
-    private lateinit var dbHelper: DatabaseHelper
+    private lateinit var imageRepository: ImageRepository
 
     private var startX = 0f
     private var startY = 0f
@@ -56,7 +50,7 @@ class ClassifyActivity2 : AppCompatActivity() {
             insets
         }
 
-        dbHelper = DatabaseHelper(this)
+        imageRepository = ImageRepository(this)
         val saveButton: Button = findViewById(R.id.button_save)
         saveButton.setOnClickListener{
             saveBitmap()
@@ -99,10 +93,20 @@ class ClassifyActivity2 : AppCompatActivity() {
         intro.text = sentences[randomIndex]
 
         imageView = findViewById(R.id.imageView5)
-        val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.shanshui1)
-        bitmap = Bitmap.createBitmap(originalBitmap.width, originalBitmap.height, Bitmap.Config.ARGB_8888)
-        canvas = Canvas(bitmap)
-        canvas.drawBitmap(originalBitmap, 0f, 0f, null)
+
+        if (intent.hasExtra("bitmap")) {
+            val byteArray = intent.getByteArrayExtra("bitmap")
+            if (byteArray != null) {
+                bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+                bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+                canvas = Canvas(bitmap)
+            }
+        } else {
+            val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.shanshui1)
+            bitmap = Bitmap.createBitmap(originalBitmap.width, originalBitmap.height, Bitmap.Config.ARGB_8888)
+            canvas = Canvas(bitmap)
+            canvas.drawBitmap(originalBitmap, 0f, 0f, null)
+        }
         imageView.setImageBitmap(bitmap)
 
         imageView.setOnTouchListener { v, event ->
@@ -262,48 +266,14 @@ class ClassifyActivity2 : AppCompatActivity() {
     }
 
     private fun saveBitmap() {
-        val imageView: ImageView = findViewById(R.id.imageView5)
-        val context: Context = imageView.context
-        bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.qiwu)
-        val savedImagePath = saveBitmapToStorage(bitmap)
-        if (savedImagePath != null) {
-            saveImagePathToDate(savedImagePath)
-            Toast.makeText(this, "Drawing saved to $savedImagePath", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(this, "Failed to save drawing", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun saveBitmapToStorage(bitmap: Bitmap): String? {
-        val context = applicationContext
-        val fileDir = File(context.filesDir, "images")
-        if (!fileDir.exists()) {
-            fileDir.mkdirs()
-        }
-        val fileName = "drawing_${System.currentTimeMillis()}.png"
-        val imageFile = File(fileDir, fileName)
-        try {
-            val fos = FileOutputStream(imageFile)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
-            fos.close()
-            return imageFile.absolutePath
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
-        }
-    }
-
-    private fun saveImagePathToDate(path: String) {
-        val db = dbHelper.writableDatabase
-        val values = ContentValues().apply {
-            put("image_path", path)
-        }
-        db.insert("drawings", null, values)
-        println(path)
+        val bitmap = Bitmap.createBitmap(imageView.width, imageView.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        imageView.draw(canvas)
+        imageRepository.saveImage(bitmap)
     }
 
     fun goToActivity2(view: View) {
-        val intent = Intent(this, ClassifyActivity2::class.java)
+        val intent = Intent(this, ShanShuiModel::class.java)
         startActivity(intent)
     }
     fun goToActivityMain(view: View) {
@@ -317,5 +287,16 @@ class ClassifyActivity2 : AppCompatActivity() {
         } else {
             view.setBackgroundResource(R.drawable.button_bg)
         }
+    }
+
+    override fun onBackPressed() {
+        if (intent.hasExtra("bitmap")) {
+            val intent = Intent(this, MainPage::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+        } else {
+            super.onBackPressed()
+        }
+
     }
 }

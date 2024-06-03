@@ -1,32 +1,32 @@
 package com.example.el_work
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
+import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.el_work.dataBase.ImageRepository
 import kotlin.random.Random
 
-class FreeCreation : AppCompatActivity() {
+class HuaNiaoModel : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     private val colors = mutableListOf<Int>()
     private lateinit var imageView: ImageView
@@ -43,15 +43,15 @@ class FreeCreation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.free_creation)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.freeCreation)) { v, insets ->
+        setContentView(R.layout.activity_hua_niao_model)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_huaniao_model)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
         imageRepository = ImageRepository(this)
-        val saveButton: Button = findViewById(R.id.button_save_free)
+        val saveButton: Button = findViewById(R.id.button_save)
         saveButton.setOnClickListener{
             saveBitmap()
         }
@@ -73,7 +73,7 @@ class FreeCreation : AppCompatActivity() {
         val buttondeep= findViewById<Button>(R.id.button_deep)
         val buttonlight = findViewById<Button>(R.id.button_light)
         var initialButtonColor = button4.backgroundTintList?.defaultColor ?: Color.BLACK
-        val intro : TextView = findViewById<TextView>(R.id.intro_free);
+        val intro :TextView= findViewById<TextView>(R.id.intro);
         val sentences = arrayOf(
             "中国国画源远流长，是中国传统绘画艺术的重要组成部分。",
             "国画注重意境抒发，强调笔墨之间的意象和意蕴。",
@@ -85,17 +85,35 @@ class FreeCreation : AppCompatActivity() {
             "国画作品中常见的表现手法包括写意、工笔、精品等，展现了绘画技法的多样性。",
             "中国国画艺术在不同历史时期有着不同的发展轨迹，反映了社会文化的变迁和艺术风格的演变。",
             "学习国画需要不断练习，领悟其中的精髓，培养对传统文化和艺术的热爱。"
-
             // 更多句子...
         )
+
+
         val randomIndex = Random.nextInt(sentences.size)
         intro.text = sentences[randomIndex]
 
-        imageView = findViewById(R.id.imageView5_free)
-        val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.whitecanvas)
-        bitmap = Bitmap.createBitmap(originalBitmap.width, originalBitmap.height, Bitmap.Config.ARGB_8888)
-        canvas = Canvas(bitmap)
-        canvas.drawBitmap(originalBitmap, 0f, 0f, null)
+//        imageView = findViewById(R.id.imageView5)
+//        val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.shanshui1)
+//        bitmap = Bitmap.createBitmap(originalBitmap.width, originalBitmap.height, Bitmap.Config.ARGB_8888)
+//        canvas = Canvas(bitmap)
+//        canvas.drawBitmap(originalBitmap, 0f, 0f, null)
+//        imageView.setImageBitmap(bitmap)
+
+        imageView = findViewById(R.id.imageView5)
+
+        if (intent.hasExtra("bitmap")) {
+            val byteArray = intent.getByteArrayExtra("bitmap")
+            if (byteArray != null) {
+                bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+                bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+                canvas = Canvas(bitmap)
+            }
+        } else {
+            val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.huaniao1)
+            bitmap = Bitmap.createBitmap(originalBitmap.width, originalBitmap.height, Bitmap.Config.ARGB_8888)
+            canvas = Canvas(bitmap)
+            canvas.drawBitmap(originalBitmap, 0f, 0f, null)
+        }
         imageView.setImageBitmap(bitmap)
 
         imageView.setOnTouchListener { v, event ->
@@ -113,7 +131,7 @@ class FreeCreation : AppCompatActivity() {
                             xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
                             isAntiAlias = true
                         }
-                        canvas.drawCircle(scaledX, scaledY, 40f, clearPaint)
+                        canvas.drawCircle(scaledX, scaledY, 25f, clearPaint)
                         imageView.invalidate()
                     } else {
                         canvas.drawLine(startX, startY, scaledX, scaledY, paint)
@@ -127,8 +145,8 @@ class FreeCreation : AppCompatActivity() {
         }
         paint = Paint().apply {
             color = initialButtonColor
-            strokeWidth = 15f
-            style = Paint.Style.FILL
+            strokeWidth = 25f
+            style = Paint.Style.STROKE
             alpha=128
         }
 
@@ -199,13 +217,13 @@ class FreeCreation : AppCompatActivity() {
             button12.invalidate()
         }
         buttonwider.setOnClickListener {
-            if(paint.strokeWidth<30f){
+            if(paint.strokeWidth<40f){
                 paint.strokeWidth += 5f
             }
             buttonwider.invalidate()
         }
         buttonnarrow.setOnClickListener {
-            if (paint.strokeWidth>10f){
+            if (paint.strokeWidth>15f){
                 paint.strokeWidth -= 5f
             }
             buttonnarrow.invalidate()
@@ -224,8 +242,8 @@ class FreeCreation : AppCompatActivity() {
             buttonlight.invalidate()
         }
 
-        val editText = findViewById<EditText>(R.id.name_free)
-        val rootView = findViewById<ConstraintLayout>(R.id.freeCreation)
+        val editText = findViewById<EditText>(R.id.name)
+        val rootView = findViewById<ConstraintLayout>(R.id.activity_huaniao_model)
 
         // 设置 EditText 的回车键监听器
         editText.setOnEditorActionListener { v, actionId, event ->
@@ -278,8 +296,14 @@ class FreeCreation : AppCompatActivity() {
         }
     }
 
-    fun goToFreeCreation(view: View) {
-        val intent = Intent(this,FreeCreation::class.java)
-        startActivity(intent)
+    override fun onBackPressed() {
+        if (intent.hasExtra("bitmap")) {
+            val intent = Intent(this, MainPage::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+        } else {
+            super.onBackPressed()
+        }
+
     }
 }

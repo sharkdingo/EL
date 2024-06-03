@@ -2,21 +2,23 @@ package com.example.el_work.MainUserActivity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.el_work.DataBase.DatabaseHelper
 import com.example.el_work.R
+import com.example.el_work.dataBase.ImageRepository
 
 class MainUserActivity : AppCompatActivity() {
 
     // 展示柜相关变量
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: DisplayCaseAdapter
-    private lateinit var databaseHelper: DatabaseHelper
+    private lateinit var imageRepository: ImageRepository
+    private lateinit var imageView: ImageView
+    private lateinit var bitmapAdapter: BitmapAdapter
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,22 +30,13 @@ class MainUserActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        imageRepository = ImageRepository(this)
 
         // 展示柜RecyclerView
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.recycler_view_zhan)
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-
-        // 数据库
-        databaseHelper = DatabaseHelper(this)
-        val cursor = databaseHelper.getAllData()
-        adapter = DisplayCaseAdapter(this, cursor)
-        recyclerView.adapter = adapter
+        bitmapAdapter = BitmapAdapter(this, imageRepository.getImageList(), recyclerView)
+        recyclerView.adapter = bitmapAdapter
+        recyclerView.addItemDecoration(BitmapItemDecoration(this))
     }
-
-    // 关闭数据库
-    override fun onDestroy() {
-        super.onDestroy()
-        databaseHelper.close()
-    }
-
 }

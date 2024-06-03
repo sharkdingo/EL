@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.ComponentActivity
 import android.content.res.Configuration
-import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -66,12 +65,12 @@ class MainPage : ComponentActivity() {
     }
 
     fun StartGame(view: View) {
-        val intent = Intent(this, ClassifyActivity1::class.java)
+        val intent = Intent(this, ChoosePlayModel::class.java)
         startActivity(intent)
     }
 
     fun goToActivity_main(view: View){
-        val intent = Intent(this, ClassifyActivity1::class.java)
+        val intent = Intent(this, ChoosePlayModel::class.java)
         startActivity(intent)
     }
 

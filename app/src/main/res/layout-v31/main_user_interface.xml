@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/mine_bg">
 
     <ImageButton
         android:id="@+id/interface_imageButtonAvatar"
@@ -51,12 +52,15 @@
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintVertical_bias="0.555" />
 
+
     <Button
         android:id="@+id/interface_buttonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nickname"
         android:textSize="25sp"
+        android:fontFamily="@font/font"
+        android:textColor="@color/black"
         android:background="#00000000"
         app:layout_constraintBottom_toBottomOf="@+id/interface_horizontalLine1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +94,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/interface_textView_zhan"
         app:layout_constraintVertical_bias="1.0" />
+
+
+
 
     <ImageView
         android:id="@+id/imageView_test"

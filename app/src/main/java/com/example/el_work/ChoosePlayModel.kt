@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class ClassifyActivity1 : AppCompatActivity() {
+class ChoosePlayModel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,7 +20,17 @@ class ClassifyActivity1 : AppCompatActivity() {
         }
     }
     fun goToActivity2(view: View) {
-        val intent = Intent(this, ClassifyActivity2::class.java)
+        val intent = Intent(this, ShanShuiModel::class.java)
+        startActivity(intent)
+    }
+
+    fun goToActivityHuaNiao(view: View) {
+        val intent = Intent(this, HuaNiaoModel::class.java)
+        startActivity(intent)
+    }
+
+    fun goToActivityQiWu(view: View) {
+        val intent = Intent(this, QiWuModel::class.java)
         startActivity(intent)
     }
 
