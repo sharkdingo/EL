@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-06-01T09:55:15.267593700Z">
+        <DropdownSelection timestamp="2024-06-03T09:17:50.190779700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\30991\.android\avd\Pixel_Tablet_API_34.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\sharkdingo\.android\avd\Pixel_4_XL_API_34.avd" />
             </handle>
           </Target>
         </DropdownSelection>
@@ -15,6 +15,14 @@
       </SelectionState>
       <SelectionState runConfigName="ClassifyActivity2">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2024-06-02T16:49:46.974868400Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\sharkdingo\.android\avd\Pixel_4_XL_API_34.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
     </selectionStates>
   </component>

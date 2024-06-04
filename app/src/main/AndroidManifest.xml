@@ -28,12 +28,6 @@
         </provider>
 
         <activity
-            android:name=".MainUserActivity.DisplayCaseViewHolder"
-            android:exported="false" />
-        <activity
-            android:name=".MainUserActivity.DisplayCaseAdapter"
-            android:exported="false" />
-        <activity
             android:name=".MainPage"
             android:configChanges="orientation|screenSize"
             android:exported="true"

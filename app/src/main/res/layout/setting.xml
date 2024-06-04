@@ -250,10 +250,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/setting_bottomLayout_horizontalLine4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/setting_bottomLayout_textview4"
             app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine3"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/setting_bottomLayout_textview5"

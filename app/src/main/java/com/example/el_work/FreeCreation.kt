@@ -1,36 +1,29 @@
 package com.example.el_work
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import com.example.el_work.DataBase.DatabaseHelper
-import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
+import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.internal.ViewUtils.hideKeyboard
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.el_work.database.ImageRepository
 import kotlin.random.Random
 
 class FreeCreation : AppCompatActivity() {
@@ -40,7 +33,7 @@ class FreeCreation : AppCompatActivity() {
     private lateinit var canvas: Canvas
     private lateinit var paint:Paint
     private lateinit var bitmap: Bitmap
-    private lateinit var dbHelper: DatabaseHelper
+    private lateinit var imageRepository: ImageRepository
 
     private var startX = 0f
     private var startY = 0f
@@ -57,8 +50,8 @@ class FreeCreation : AppCompatActivity() {
             insets
         }
 
-        dbHelper = DatabaseHelper(this)
-        val saveButton: Button = findViewById(R.id.button_save_free)
+        imageRepository = ImageRepository(this)
+        val saveButton: Button = findViewById(R.id.button_save)
         saveButton.setOnClickListener{
             saveBitmap()
         }
@@ -262,44 +255,10 @@ class FreeCreation : AppCompatActivity() {
     }
 
     private fun saveBitmap() {
-        val imageView: ImageView = findViewById(R.id.imageView5_free)
-        val context: Context = imageView.context
-        bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.qiwu)
-        val savedImagePath = saveBitmapToStorage(bitmap)
-        if (savedImagePath != null) {
-            saveImagePathToDate(savedImagePath)
-            Toast.makeText(this, "Drawing saved to $savedImagePath", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(this, "Failed to save drawing", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun saveBitmapToStorage(bitmap: Bitmap): String? {
-        val context = applicationContext
-        val fileDir = File(context.filesDir, "images")
-        if (!fileDir.exists()) {
-            fileDir.mkdirs()
-        }
-        val fileName = "drawing_${System.currentTimeMillis()}.png"
-        val imageFile = File(fileDir, fileName)
-        try {
-            val fos = FileOutputStream(imageFile)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
-            fos.close()
-            return imageFile.absolutePath
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
-        }
-    }
-
-    private fun saveImagePathToDate(path: String) {
-        val db = dbHelper.writableDatabase
-        val values = ContentValues().apply {
-            put("image_path", path)
-        }
-        db.insert("drawings", null, values)
-        println(path)
+        val bitmap = Bitmap.createBitmap(imageView.width, imageView.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        imageView.draw(canvas)
+        imageRepository.saveImage(bitmap)
     }
 
     fun goToActivity2(view: View) {
