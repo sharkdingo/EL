@@ -1,29 +1,29 @@
 package com.example.el_work
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
-import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.el_work.database.ImageRepository
+import com.example.el_work.dataBase.ImageRepository
 import kotlin.random.Random
 
 class FreeCreation : AppCompatActivity() {
@@ -51,7 +51,7 @@ class FreeCreation : AppCompatActivity() {
         }
 
         imageRepository = ImageRepository(this)
-        val saveButton: Button = findViewById(R.id.button_save)
+        val saveButton: Button = findViewById(R.id.button_save_free)
         saveButton.setOnClickListener{
             saveBitmap()
         }
@@ -262,7 +262,7 @@ class FreeCreation : AppCompatActivity() {
     }
 
     fun goToActivity2(view: View) {
-        val intent = Intent(this, ClassifyActivity2::class.java)
+        val intent = Intent(this, ShanShuiModel::class.java)
         startActivity(intent)
     }
     fun goToActivityMain(view: View) {

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.el_work.ClassifyActivity2
+import com.example.el_work.ShanShuiModel
 import com.example.el_work.R
 import java.io.ByteArrayOutputStream
 
@@ -28,21 +28,22 @@ class BitmapAdapter(private val context: Context, private val bitmapList: List<B
         val layoutParams = holder.imageView.layoutParams
         layoutParams.height = recyclerViewHeight
 
-        // 计算ImageView的宽度，使其与高度成比例布局
+        // 计算ImageView的宽度，使其与高度成比例
         val bitmapWidth = bitmap.width
         val bitmapHeight = bitmap.height
         val aspectRatio = bitmapWidth.toFloat() / bitmapHeight.toFloat()
         val imageViewWidth = (recyclerViewHeight * aspectRatio).toInt()
         layoutParams.width = imageViewWidth
+
+        // 设置布局参数后请求重新布局
         holder.imageView.layoutParams = layoutParams
         holder.imageView.requestLayout()
 
-        //设置点击事件
         holder.imageView.setOnClickListener {
             val outputStream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 60, outputStream)
             val byteArray = outputStream.toByteArray()
-            val intent = Intent(context, ClassifyActivity2::class.java)
+            val intent = Intent(context, ShanShuiModel::class.java)
             intent.putExtra("bitmap", byteArray)
             context.startActivity(intent)
         }

@@ -2,21 +2,26 @@ package com.example.el_work
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Button
 import android.widget.Switch
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.el_work.MainUserActivity.MainUserActivity
-import com.example.el_work.database.ImageRepository
+import com.example.el_work.dataBase.ImageRepository
 
 class SettingActivity : AppCompatActivity() {
     private lateinit var imageRepository: ImageRepository
-    @SuppressLint("MissingInflatedId", "UseSwitchCompatOrMaterialCode")
+    private lateinit var preferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,8 +31,24 @@ class SettingActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        preferences = getSharedPreferences("app_settings", MODE_PRIVATE)
+        editor = preferences.edit()
+
+        val switchMusic = findViewById<SwitchCompat>(R.id.setting_bottomLayout_switch1)
+        val isMusicEnabled = preferences.getBoolean("music_enabled", true)
+        switchMusic.isChecked = isMusicEnabled
+
+        switchMusic.setOnCheckedChangeListener { _, isChecked ->
+            editor.putBoolean("music_enabled", isChecked)
+            editor.apply()
+
+            val musicServiceIntent = Intent(this, MusicService::class.java)
+            musicServiceIntent.putExtra("play_music", isChecked)
+            startService(musicServiceIntent)
+        }
         imageRepository = ImageRepository(this)
-        val switchClear: Switch = findViewById(R.id.setting_bottomLayout_switch4)
+        val switchClear: SwitchCompat = findViewById(R.id.setting_bottomLayout_switch4)
         switchClear.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 imageRepository.clearImage()

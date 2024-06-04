@@ -161,7 +161,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/setting_bottomLayout_switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -297,7 +297,7 @@
             app:layout_constraintTop_toBottomOf="@+id/setting_bottomLayout_horizontalLine5"
             app:layout_constraintVertical_bias="0.5" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/setting_bottomLayout_switch4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

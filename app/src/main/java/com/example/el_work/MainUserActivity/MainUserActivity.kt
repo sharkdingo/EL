@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.el_work.R
-import com.example.el_work.database.ImageRepository
+import com.example.el_work.dataBase.ImageRepository
 
 class MainUserActivity : AppCompatActivity() {
 
@@ -30,9 +30,9 @@ class MainUserActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        imageRepository = ImageRepository(this)
 
         // 展示柜RecyclerView
-        imageRepository = ImageRepository(this)
         recyclerView = findViewById(R.id.recycler_view_zhan)
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         bitmapAdapter = BitmapAdapter(this, imageRepository.getImageList(), recyclerView)
